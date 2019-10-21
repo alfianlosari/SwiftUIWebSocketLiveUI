@@ -10,7 +10,6 @@ import SwiftUI
 import StaggeredList
 import Foundation
 
-
 struct ContentView: View {
     
     @ObservedObject var service = ViewService()
@@ -18,20 +17,14 @@ struct ContentView: View {
     
     var body: some View {
         NavigationView {
-            
             if service.homeView != nil {
                 service.homeView!
                     .navigationBarTitle(title)
-            }
-            
-            if service.homeView == nil {
+            } else {
                 Text("Waiting for WebSocket SwiftUI View Data")
                     .navigationBarTitle(title)
             }
-        }
-            
-            
-        .onAppear {
+        }.onAppear {
             self.service.connect()
         }
     }
@@ -49,7 +42,6 @@ struct Item: Codable, Identifiable {
     var title: String
     var subtitle: String
     
-    
     var image: UIImage {
         return UIImage(named: imageText) ?? UIImage(named: "image1")!
     }
@@ -59,26 +51,22 @@ struct Item: Codable, Identifiable {
     }
 }
 
-
-
 struct HomeView: View, Decodable {
     
     var layout = "list"
     var data: [Item] = []
     
-    var _layout: HomeLayout {
+    private var _layout: HomeLayout {
         return HomeLayout(rawValue: self.layout) ?? .list
     }
     
-    var numberOfOfColumns: Int {
+    private var numberOfOfColumns: Int {
         return _layout == .list ? 1 : 2
     }
     
     var body: some View {
-       StaggeredLayoutList(data: self.data, numberOfColumns: numberOfOfColumns, horizontalSpacing: 8, verticalSpacing: 8, sectionInsets: .init(top: 0, leading: 8, bottom: 0, trailing: 8)) { ItemListView(item: $0) }
-
+        StaggeredLayoutList(data: self.data, numberOfColumns: numberOfOfColumns, horizontalSpacing: 8, verticalSpacing: 8, sectionInsets: .init(top: 0, leading: 8, bottom: 0, trailing: 8)) { ItemListView(item: $0) }
     }
-    
 }
 
 struct ItemListView: View {
@@ -88,7 +76,7 @@ struct ItemListView: View {
     var body: some View {
         VStack(alignment: .leading) {
             Image(uiImage: item.image)
-            .resizable()
+                .resizable()
                 .aspectRatio(item.imageAspectRatio, contentMode: .fit)
                 .cornerRadius(8)
             Text(item.title)
@@ -98,7 +86,6 @@ struct ItemListView: View {
         }
     }
 }
-
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
