@@ -1,0 +1,16 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "StaggeredList",
+        "repositoryURL": "https://github.com/alfianlosari/SwiftUIStaggeredList",
+        "state": {
+          "branch": null,
+          "revision": "9959404cf5b068dbee26ed36d1c14bece3a97cf1",
+          "version": "0.1.4"
+        }
+      }
+    ]
+  },
+  "version": 1
+}
