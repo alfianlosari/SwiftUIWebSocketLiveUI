@@ -6,7 +6,7 @@
     "react": "^16.10.2",
     "react-dom": "^16.10.2",
     "react-json-view": "^1.19.1",
-    "react-scripts": "3.2.0",
+    "react-scripts": "5.0.1",
     "websocket": "^1.0.30"
   },
   "scripts": {
